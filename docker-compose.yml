@@ -1,9 +1,36 @@
 version: '3.8'
 
 services:
-  web-asso:
+  # 1. La Base de Données
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: user_asso
+      POSTGRES_PASSWORD: password_asso
+      POSTGRES_DB: asso_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistance !
+
+  # 2. Le Backend (API)
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: user_asso
+      DB_PASSWORD: password_asso
+      DB_NAME: asso_db
+
+  # 3. Le Frontend (Ton site actuel)
+  frontend:
     build: .
     ports:
-      - "8080:80" # On mappe le port 8080 de ton PC au port 80 du conteneur
-    volumes:
-      - ./src:/usr/share/nginx/html # "Lien magique" pour voir tes modifs sans redémarrer
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
