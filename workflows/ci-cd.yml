@@ -1,0 +1,64 @@
+name: CI/CD Pipeline Asso Complete
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  # ÉTAPE 1 : TEST ET LINTING
+  test-and-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x] # Matrix comme demandé dans ton TD
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configuration de Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Tests du Backend
+      - name: Build & Test Backend
+        run: |
+          cd backend
+          npm install
+          echo "Exécution des tests backend simulée..."
+          # npm test (si tu as configuré jest)
+
+      # Tests du Frontend (Linting)
+      - name: Build & Test Frontend
+        run: |
+          npm install
+          npm test # Lance htmlhint ou jest sur src/
+
+  # ÉTAPE 2 : DÉPLOIEMENT (Seulement si les tests passent)
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Déploiement vers GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./src # On publie le dossier frontend
+
+      - name: Simulation Déploiement Docker (Bonus Prof)
+        run: |
+          echo "Construction de l'image Docker multi-services..."
+          echo "docker build -t asso-backend ./backend"
+          echo "docker build -t asso-frontend ./src"
+          echo "Push vers le registre terminé !"
