@@ -4,12 +4,14 @@
   "description": "Projet site web BDLC",
   "main": "index.js",
   "scripts": {
-  "test": "htmlhint src/*.html"
-},
+    "test": "htmlhint src/*.html",
+    "test2": "jest"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "htmlhint": "^1.9.1"
+    "htmlhint": "^1.9.1",
+    "jest": "^30.2.0"
   }
 }
