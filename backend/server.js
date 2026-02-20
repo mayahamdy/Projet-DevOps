@@ -28,7 +28,7 @@ const initDb = async () => {
         title VARCHAR(100),
         date VARCHAR(50),
         prix VARCHAR(50),
-        lieu VARCHAR(150),
+        lieu VARCHAR(150)
       );
     `);
     
@@ -66,5 +66,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Backend asso écoutant sur http://localhost:${port}`);
+  console.log(`Backend asso écoutant sur http://localhost:${port}`);
 });
