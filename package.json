@@ -1,0 +1,15 @@
+{
+  "name": "projet-devops",
+  "version": "1.0.0",
+  "description": "Projet site web BDLC",
+  "main": "index.js",
+  "scripts": {
+  "test": "htmlhint src/*.html"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "htmlhint": "^1.9.1"
+  }
+}
