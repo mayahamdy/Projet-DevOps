@@ -24,10 +24,11 @@ const initDb = async () => {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS events (
         id SERIAL PRIMARY KEY,
+        asso VARCHAR(100),
         title VARCHAR(100),
         date VARCHAR(50),
-        category VARCHAR(50),
-        description TEXT
+        prix VARCHAR(50),
+        lieu VARCHAR(150),
       );
     `);
     
@@ -35,13 +36,13 @@ const initDb = async () => {
     const res = await pool.query('SELECT COUNT(*) FROM events');
     if (parseInt(res.rows[0].count) === 0) {
       await pool.query(`
-        INSERT INTO events (title, date, category, description) 
-        VALUES ('Grand Gala Annuel', '15 Juin 2026', 'Culture', 'Une soirée inoubliable pour soutenir nos projets.');
+        INSERT INTO events (asso, title, date, prix, lieu) 
+        VALUES ('Absolute Cinema', 'Projection du film Fight Club', '20 Fevrier 2026', 'gratuit', 'salle C03');
       `);
-      console.log("✅ Données de test insérées.");
+      console.log("Données de test insérées.");
     }
   } catch (err) {
-    console.error("❌ Erreur init DB:", err.message);
+    console.error("Erreur init DB:", err.message);
   }
 };
 
