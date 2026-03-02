@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# On copie les fichiers de dépendances
+
 COPY package*.json ./
 RUN npm install
 

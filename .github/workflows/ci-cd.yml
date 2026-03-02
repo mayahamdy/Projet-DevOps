@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  # ÉTAPE 1 : TESTS (Matrix Strategy comme demandé)
+  # ÉTAPE 1 : TESTS 
   test-and-build:
     runs-on: ubuntu-latest
     strategy:
@@ -54,7 +54,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src # On déploie le dossier frontend
+          publish_dir: ./src 
 
       - name: Simulation Déploiement Docker (Partie 3 du TD)
         run: |

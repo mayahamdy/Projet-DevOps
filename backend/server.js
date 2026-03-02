@@ -19,7 +19,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-// --- INITIALISATION DE LA DB (DevOps Helper) ---
+// --- INITIALISATION DE LA DB ---
 const initDb = async () => {
   try {
     await pool.query(`
@@ -61,7 +61,7 @@ app.get('/api/events', async (req, res) => {
   }
 });
 
-// Route de santé (Healtcheck - très utile en DevOps)
+
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
