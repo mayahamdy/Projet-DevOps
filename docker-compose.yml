@@ -8,8 +8,10 @@ services:
       POSTGRES_USER: user_asso
       POSTGRES_PASSWORD: password_asso
       POSTGRES_DB: asso_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data # Persistance !
+      ports:
+      - "5432:5432" # <-- Indispensable
+    #volumes:
+    #  - postgres_data:/var/lib/postgresql/data # Persistance !
 
   # 2. Le Backend (API)
   backend:
