@@ -9,7 +9,9 @@ services:
       POSTGRES_PASSWORD: password_asso
       POSTGRES_DB: asso_db
     ports:
-      - "5432:5432" 
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 
   # 2. Le Backend (API)
@@ -24,6 +26,7 @@ services:
       DB_USER: user_asso
       DB_PASSWORD: password_asso
       DB_NAME: asso_db
+    restart: on-failure
 
   # 3. Le Frontend 
   frontend:

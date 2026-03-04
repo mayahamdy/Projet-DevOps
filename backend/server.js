@@ -81,6 +81,23 @@ app.post('/api/events', async (req, res) => {
   }
 });
 
+// Route pour supprimer un événement
+app.delete('/api/events/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Événement non trouvé' });
+    }
+    
+    res.status(200).json({ message: 'Événement supprimé', event: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
