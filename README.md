@@ -11,12 +11,25 @@ Le frontend est accessible sur : http://localhost:8080
 
 L'API (données JSON) est accessible sur : http://localhost:3000/api/events
 
+Fonctionnalités
+
+Consultation des événements : Affichage en temps réel de tous les événements stockés en base de données avec les informations : titre, association, date, lieu et prix.
+
+Ajout d'événements : Interface dédiée (newEvent.html) permettant de créer de nouveaux événements avec un formulaire complet (titre, association, lieu, prix, date).
+
+Suppression d'événements : Bouton de suppression sur chaque événement avec confirmation avant suppression.
+
+UI/UX : Interface épurée utilisant Bootstrap 5, logo BDLC, navbar responsive et favicon.
+
 Architecture technique
 Le projet est découpé en trois services conteneurisés :
 
-Frontend : Serveur Nginx qui distribue les fichiers statiques (HTML/JS).
+Frontend : Serveur Nginx qui distribue les fichiers statiques (HTML/JS/CSS).
 
-Backend : API REST développée avec Node.js et Express.
+Backend : API REST développée avec Node.js et Express avec trois endpoints :
+- GET /api/events - Récupère tous les événements
+- POST /api/events - Crée un nouvel événement
+- DELETE /api/events/:id - Supprime un événement
 
 Base de données : Instance PostgreSQL 15 pour le stockage des événements.
 
@@ -41,8 +54,6 @@ YAML : Plusieurs échecs de pipeline à cause de mauvaises indentations dans le 
 Ports : Conflits sur le port 8080 résolus en nettoyant systématiquement les anciens containers avec docker compose down.
 
 Organisation des branches
-main : Branche principale contenant la version stable.
+main : Branche principale contenant la version stable avec toutes les fonctionnalités.
 
-backend : Branche de développement pour la partie API (fusionnée via Pull Request).
-
-gh-pages : Branche dédiée au déploiement statique automatisé.
+gh-pages : Branche dédiée au déploiement statique automatisé du frontend.
