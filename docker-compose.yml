@@ -35,6 +35,8 @@ services:
       - "8080:80"
     depends_on:
       - backend
+    volumes:
+      - ./src:/usr/share/nginx/html
 
 volumes:
   postgres_data:

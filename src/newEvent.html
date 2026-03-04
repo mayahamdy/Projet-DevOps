@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BDLC - Gestion Assos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">   
+    <link rel="icon" href="BDLC.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
         <nav class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">Site BDLC</a>
+            <a class="navbar-brand" href="#">
+                <img src="BDLC.png" alt="BDLC Logo" height="40" class="me-2">
+                Site BDLC
+            </a>
         </div>
     </nav>
     <header class="py-5 text-center container">
@@ -17,7 +22,10 @@
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Ajouter un événement</h1>
             </div>
+
         </div>
+        <a href="index.html" class="btn btn-primary">Retour</a>
+
         </header>
 
         <div class="row py-lg-5">
@@ -44,8 +52,8 @@
                         <input type="date" class="form-control" id="date" required>
                     </div>
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Ajouter l'événement</button>
-                        <a href="index.html" class="btn btn-secondary">Retour</a>
+                        <button type="submit" class="btn btn-primary w-auto">Ajouter l'événement</button>
+                        <a href="index.html" class="btn btn-secondary w-auto">Retour</a>
                     </div>
                 </form>
             </div>
