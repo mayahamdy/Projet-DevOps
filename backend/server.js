@@ -61,6 +61,25 @@ app.get('/api/events', async (req, res) => {
   }
 });
 
+// Route pour créer un nouvel événement
+app.post('/api/events', async (req, res) => {
+  try {
+    const { title, asso, lieu, prix, date } = req.body;
+    
+    if (!title || !asso || !lieu || !prix || !date) {
+      return res.status(400).json({ error: 'Tous les champs sont requis' });
+    }
+
+    const result = await pool.query(
+      'INSERT INTO events (title, asso, lieu, prix, date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [title, asso, lieu, prix, date]
+    );
+    
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
